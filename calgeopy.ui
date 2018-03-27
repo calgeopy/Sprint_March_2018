@@ -50,7 +50,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>FIle</string>
     </property>
    </widget>
    <widget class="PlotWidget" name="gvPlot">
