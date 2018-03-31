@@ -1,12 +1,12 @@
-import pyqtgraph as pg
-from PyQt5.QtWidgets import QFileDialog
-from pyqtgraph.Qt import QtCore, QtGui
 import sys
-#import welly
+import pyqtgraph as pg
+from pyqtgraph.Qt import QtCore, QtGui
+
+from PyQt5.QtWidgets import (QApplication, QMainWindow, QFileDialog)
+from PyQt5.uic import loadUi
+
 from welly import Well
 
-from PyQt5.QtWidgets import (QApplication, QMainWindow)
-from PyQt5.uic import loadUi
 
 class AppMainWindow(QMainWindow):
     def __init__(self, parent=None):
