@@ -12,12 +12,10 @@ class AppMainWindow(QMainWindow):
     def __init__(self, parent=None):
         QMainWindow.__init__(self, parent)
 
-
         loadUi("calgeopy_march27.ui", self)
 
         self.btnGetfilename.clicked.connect(self.getfilename)
         self.btnPlotlas.clicked.connect(self.plotlas)
-
 
     def getfilename(self):
         dir = sys.path[-1]
@@ -34,7 +32,6 @@ class AppMainWindow(QMainWindow):
         #y=w.df().index.values
         #y=w.data['GR'].basis
         y=w.survey_basis()
-
 
 
         self.gvPlot1.plot(x,y,pen=(1, 4))
