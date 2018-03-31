@@ -20,8 +20,9 @@ class AppMainWindow(QMainWindow):
 
 
     def getfilename(self):
+        dir = sys.path[-1]
         fname = QFileDialog.getOpenFileName(self, 'Open file',
-                                            'c:\\', "LAS file (*.las)")
+                                            dir, "LAS file (*.las)")
         self.le_filename.setText(str(fname[0].replace('\\', '/')))
 
     def plotlas(self):
@@ -34,8 +35,6 @@ class AppMainWindow(QMainWindow):
         #y=w.data['GR'].basis
         y=w.survey_basis()
 
-
-        # print(w.data)
 
 
         self.gvPlot1.plot(x,y,pen=(1, 4))
