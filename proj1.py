@@ -1,4 +1,5 @@
 import pyqtgraph as pg
+from PyQt5.QtWidgets import QFileDialog
 from pyqtgraph.Qt import QtCore, QtGui
 import sys
 #import welly
@@ -14,7 +15,14 @@ class AppMainWindow(QMainWindow):
 
         loadUi("calgeopy_march27.ui", self)
 
+        self.btnGetfilename.clicked.connect(self.getfilename)
         self.btnPlotlas.clicked.connect(self.plotlas)
+
+
+    def getfilename(self):
+        fname = QFileDialog.getOpenFileName(self, 'Open file',
+                                            'c:\\', "LAS file (*.las)")
+        self.le_filename.setText(str(fname[0].replace('\\', '/')))
 
     def plotlas(self):
         filename = self.le_filename.text()
