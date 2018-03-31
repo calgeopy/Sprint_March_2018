@@ -1,27 +1,26 @@
-import pyqtgraph as pg
-from PyQt5.QtWidgets import QFileDialog
-from pyqtgraph.Qt import QtCore, QtGui
 import sys
-#import welly
+import pyqtgraph as pg
+from pyqtgraph.Qt import QtCore, QtGui
+
+from PyQt5.QtWidgets import (QApplication, QMainWindow, QFileDialog)
+from PyQt5.uic import loadUi
+
 from welly import Well
 
-from PyQt5.QtWidgets import (QApplication, QMainWindow)
-from PyQt5.uic import loadUi
 
 class AppMainWindow(QMainWindow):
     def __init__(self, parent=None):
         QMainWindow.__init__(self, parent)
-
 
         loadUi("calgeopy_march27.ui", self)
 
         self.btnGetfilename.clicked.connect(self.getfilename)
         self.btnPlotlas.clicked.connect(self.plotlas)
 
-
     def getfilename(self):
+        dir = sys.path[-1]
         fname = QFileDialog.getOpenFileName(self, 'Open file',
-                                            'c:\\', "LAS file (*.las)")
+                                            dir, "LAS file (*.las)")
         self.le_filename.setText(str(fname[0].replace('\\', '/')))
 
     def plotlas(self):
@@ -33,9 +32,6 @@ class AppMainWindow(QMainWindow):
         #y=w.df().index.values
         #y=w.data['GR'].basis
         y=w.survey_basis()
-
-
-        # print(w.data)
 
 
         self.gvPlot1.plot(x,y,pen=(1, 4))
