@@ -40,7 +40,7 @@ class AppMainWindow(QMainWindow):
     def plottops(self):
         #tops=[["Tops1",400],['Top2',600],['Top3',800]]
 
-        print(self.tops)
+        #print(self.tops)
         for tp in self.tops:
             self.gvPlot1.addLine(x=None, y=tp[1])
             tp_txt=pg.TextItem(text=tp[0])
@@ -70,11 +70,6 @@ class AppMainWindow(QMainWindow):
         self.gvPlot4.clear()
 
 
-
-
-
-
-
     def loadlas(self):
         filename = self.le_filename.text()
 
@@ -85,7 +80,6 @@ class AppMainWindow(QMainWindow):
         #print(curves)
 
         for c in curves:
-            print(c)
             self.cb_plot1.addItem(c)
             self.cb_plot2.addItem(c)
             self.cb_plot3.addItem(c)
@@ -95,7 +89,7 @@ class AppMainWindow(QMainWindow):
     def plotlas(self):
         y=self.w.survey_basis()
 
-        print(self.cb_plot1.currentIndex(),self.w.df().columns[self.cb_plot1.currentIndex()])
+        #print(self.cb_plot1.currentIndex(),self.w.df().columns[self.cb_plot1.currentIndex()])
 
         x = self.w.data[self.w.df().columns[self.cb_plot1.currentIndex()]]
         self.gvPlot1.clear()
