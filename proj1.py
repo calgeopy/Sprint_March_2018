@@ -15,6 +15,7 @@ class AppMainWindow(QMainWindow):
         loadUi("calgeopy_march27.ui", self)
 
         self.btnGetfilename.clicked.connect(self.getfilename)
+        self.btn_loadlas.clicked.connect(self.loadlas)
         self.btnPlotlas.clicked.connect(self.plotlas)
 
         self.btn_addtop.clicked.connect(self.addtop)
@@ -39,7 +40,7 @@ class AppMainWindow(QMainWindow):
     def plottops(self):
         #tops=[["Tops1",400],['Top2',600],['Top3',800]]
 
-        print(self.tops)
+        #print(self.tops)
         for tp in self.tops:
             self.gvPlot1.addLine(x=None, y=tp[1])
             tp_txt=pg.TextItem(text=tp[0])
@@ -58,40 +59,66 @@ class AppMainWindow(QMainWindow):
                                             dir, "LAS file (*.las)")
         self.le_filename.setText(str(fname[0].replace('\\', '/')))
 
-    def plotlas(self):
+        self.cb_plot1.clear()
+        self.cb_plot2.clear()
+        self.cb_plot3.clear()
+        self.cb_plot4.clear()
+
+        self.gvPlot1.clear()
+        self.gvPlot2.clear()
+        self.gvPlot3.clear()
+        self.gvPlot4.clear()
+
+
+    def loadlas(self):
         filename = self.le_filename.text()
 
-        w = Well.from_las(filename)
+        self.w = Well.from_las(filename)
+        #self.depth = self.w.survey_basis()
 
-        x = w.data['GR']
-        #y=w.df().index.values
-        #y=w.data['GR'].basis
-        y=w.survey_basis()
+        curves = self.w.df().columns
+        #print(curves)
+
+        for c in curves:
+            self.cb_plot1.addItem(c)
+            self.cb_plot2.addItem(c)
+            self.cb_plot3.addItem(c)
+            self.cb_plot4.addItem(c)
 
 
+    def plotlas(self):
+        y=self.w.survey_basis()
+
+        #print(self.cb_plot1.currentIndex(),self.w.df().columns[self.cb_plot1.currentIndex()])
+
+        x = self.w.data[self.w.df().columns[self.cb_plot1.currentIndex()]]
+        self.gvPlot1.clear()
         self.gvPlot1.plot(x,y,pen=(1, 4))
         self.gvPlot1.invertY(True)
-        self.gvPlot1.setTitle("Gamma")
+        self.gvPlot1.setTitle(self.w.df().columns[self.cb_plot1.currentIndex()])
         self.gvPlot1.setMouseEnabled(x=False, y=True)
 
-        x = w.data['DT']
+        x = self.w.data[self.w.df().columns[self.cb_plot2.currentIndex()]]
+        self.gvPlot2.clear()
         self.gvPlot2.plot(x, y,pen=(2, 4))
         self.gvPlot2.invertY(True)
-        self.gvPlot2.setTitle("Sonic")
+        self.gvPlot2.setTitle(self.w.df().columns[self.cb_plot2.currentIndex()])
         self.gvPlot2.setYLink(self.gvPlot1)
         self.gvPlot2.setMouseEnabled(x=False, y=True)
 
-        x = w.data['RHOB']
+        x = self.w.data[self.w.df().columns[self.cb_plot3.currentIndex()]]
+        self.gvPlot3.clear()
         self.gvPlot3.plot(x, y,pen=(3, 4))
         self.gvPlot3.invertY(True)
-        self.gvPlot3.setTitle("Density")
+        self.gvPlot3.setTitle(self.w.df().columns[self.cb_plot3.currentIndex()])
         self.gvPlot3.setYLink(self.gvPlot1)
         self.gvPlot3.setMouseEnabled(x=False, y=True)
 
-        x = w.data['DPHI_SAN']
+        x = self.w.data[self.w.df().columns[self.cb_plot4.currentIndex()]]
+        self.gvPlot4.clear()
         self.gvPlot4.plot(x, y,pen=(4, 4))
         self.gvPlot4.invertY(True)
-        self.gvPlot4.setTitle("Porosity")
+        self.gvPlot4.setTitle(self.w.df().columns[self.cb_plot4.currentIndex()])
         self.gvPlot4.setYLink(self.gvPlot1)
         self.gvPlot4.setMouseEnabled(x=False, y=True)
 
