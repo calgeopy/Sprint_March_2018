@@ -21,6 +21,13 @@
        <string>GroupBox</string>
       </property>
       <layout class="QFormLayout" name="formLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>File</string>
+         </property>
+        </widget>
+       </item>
        <item row="0" column="1">
         <widget class="QLineEdit" name="le_filename">
          <property name="text">
@@ -28,10 +35,10 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="label">
+       <item row="1" column="1">
+        <widget class="QPushButton" name="btnGetfilename">
          <property name="text">
-          <string>File</string>
+          <string>...</string>
          </property>
         </widget>
        </item>
@@ -48,12 +55,42 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
-        <widget class="QPushButton" name="btnGetfilename">
+       <item row="4" column="1">
+        <widget class="QLineEdit" name="le_topname"/>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_2">
          <property name="text">
-          <string>...</string>
+          <string>Top</string>
          </property>
         </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Depth</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QLineEdit" name="le_topdepth"/>
+       </item>
+       <item row="6" column="1">
+        <widget class="QPushButton" name="btn_addtop">
+         <property name="text">
+          <string>Add</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="1">
+        <widget class="QPushButton" name="btn_plottops">
+         <property name="text">
+          <string>Plot Tops</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="2">
+        <widget class="QListWidget" name="tbl_tops"/>
        </item>
       </layout>
      </widget>

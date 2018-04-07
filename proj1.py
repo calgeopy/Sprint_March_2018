@@ -2,7 +2,7 @@ import sys
 import pyqtgraph as pg
 from pyqtgraph.Qt import QtCore, QtGui
 
-from PyQt5.QtWidgets import (QApplication, QMainWindow, QFileDialog)
+from PyQt5.QtWidgets import (QApplication, QMainWindow, QFileDialog,QListWidgetItem)
 from PyQt5.uic import loadUi
 
 from welly import Well
@@ -16,6 +16,41 @@ class AppMainWindow(QMainWindow):
 
         self.btnGetfilename.clicked.connect(self.getfilename)
         self.btnPlotlas.clicked.connect(self.plotlas)
+
+        self.btn_addtop.clicked.connect(self.addtop)
+        self.btn_plottops.clicked.connect(self.plottops)
+
+
+        self.tops=[]
+
+
+    def addtop(self):
+        topname=self.le_topname.text()
+        topdepth=float(self.le_topdepth.text())
+        self.tops.append([topname,topdepth])
+
+        text = self.tops[-1][0]+','+str(self.tops[-1][1])
+        item = QListWidgetItem(text)
+        #item.setFlags(item.flags() | QtCore.Qt.ItemIsUserCheckable)
+        #item.setCheckState(QtCore.Qt.Checked)
+        self.tbl_tops.addItem(item)
+        self.tbl_tops.update()
+
+    def plottops(self):
+        #tops=[["Tops1",400],['Top2',600],['Top3',800]]
+
+        print(self.tops)
+        for tp in self.tops:
+            self.gvPlot1.addLine(x=None, y=tp[1])
+            tp_txt=pg.TextItem(text=tp[0])
+            self.gvPlot1.addItem(tp_txt)
+            tp_txt.setPos(15,tp[1],)
+            self.gvPlot2.addLine(x=None, y=tp[1])
+            self.gvPlot3.addLine(x=None, y=tp[1])
+            self.gvPlot4.addLine(x=None, y=tp[1])
+
+
+
 
     def getfilename(self):
         dir = sys.path[-1]
@@ -62,17 +97,6 @@ class AppMainWindow(QMainWindow):
 
         # self.gvPlot
 
-        tops=[["Tops1",400],['Top2',600],['Top3',800]]
-
-
-        for tp in tops:
-            self.gvPlot1.addLine(x=None, y=tp[1])
-            tp_txt=pg.TextItem(text=tp[0])
-            self.gvPlot1.addItem(tp_txt)
-            tp_txt.setPos(15,tp[1],)
-            self.gvPlot2.addLine(x=None, y=tp[1])
-            self.gvPlot3.addLine(x=None, y=tp[1])
-            self.gvPlot4.addLine(x=None, y=tp[1])
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
