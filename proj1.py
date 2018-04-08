@@ -157,16 +157,6 @@ class AppMainWindow(QMainWindow):
         QMessageBox.about(self, "About", "Created by calgeopy\nMarch, 2018")
 
 
-    #print(AppMainWindow.cb_plot1.currentIndex())
-    # print(curves)
-
-    # for c in curves:
-    #     wndCrossplot.cb_x.addItem(c)
-    #     wndCrossplot.cb_y.addItem(c)
-    #     wndCrossplot.cb_points.addItem(c)
-    #     #self.cb_plot4.addItem(c)
-
-
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     mainWnd = AppMainWindow()
