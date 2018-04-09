@@ -163,21 +163,61 @@
        </item>
        <item>
         <widget class="QGroupBox" name="groupBox_8">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>800</width>
+           <height>16777215</height>
+          </size>
+         </property>
          <property name="title">
           <string>GroupBox</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_5">
           <item row="0" column="0">
-           <widget class="PlotWidget" name="gvPlot1"/>
+           <widget class="PlotWidget" name="gvPlot1">
+            <property name="maximumSize">
+             <size>
+              <width>150</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
           </item>
           <item row="0" column="1">
-           <widget class="PlotWidget" name="gvPlot2"/>
+           <widget class="PlotWidget" name="gvPlot2">
+            <property name="maximumSize">
+             <size>
+              <width>150</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
           </item>
           <item row="0" column="4">
-           <widget class="PlotWidget" name="gvPlot4"/>
+           <widget class="PlotWidget" name="gvPlot4">
+            <property name="maximumSize">
+             <size>
+              <width>150</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
           </item>
           <item row="0" column="2">
-           <widget class="PlotWidget" name="gvPlot3"/>
+           <widget class="PlotWidget" name="gvPlot3">
+            <property name="maximumSize">
+             <size>
+              <width>150</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
           </item>
          </layout>
          <zorder>scatter</zorder>
@@ -193,22 +233,6 @@
           <string>GroupBox</string>
          </property>
          <layout class="QGridLayout" name="gridLayout">
-          <item row="4" column="0" colspan="2">
-           <spacer name="horizontalSpacer_3">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>600</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
           <item row="3" column="0">
            <spacer name="verticalSpacer_2">
             <property name="orientation">
@@ -265,7 +289,7 @@
                </property>
               </widget>
              </item>
-             <item row="4" column="8">
+             <item row="4" column="7">
               <widget class="QLineEdit" name="le_trendlineint">
                <property name="maximumSize">
                 <size>
@@ -282,7 +306,7 @@
                </property>
               </widget>
              </item>
-             <item row="1" column="8">
+             <item row="1" column="7">
               <widget class="QPushButton" name="btn_trendline">
                <property name="text">
                 <string>Add Trendline</string>
@@ -295,14 +319,14 @@
              <item row="3" column="1" colspan="4">
               <widget class="QComboBox" name="cb_points"/>
              </item>
-             <item row="3" column="6">
+             <item row="3" column="5">
               <widget class="QLabel" name="label_13">
                <property name="text">
                 <string>Slope</string>
                </property>
               </widget>
              </item>
-             <item row="3" column="8">
+             <item row="3" column="7">
               <widget class="QLineEdit" name="le_trendlineslope">
                <property name="enabled">
                 <bool>true</bool>
@@ -321,7 +345,7 @@
                </property>
               </widget>
              </item>
-             <item row="4" column="6">
+             <item row="4" column="5">
               <widget class="QLabel" name="label_12">
                <property name="text">
                 <string>Intercept</string>
@@ -331,21 +355,25 @@
              <item row="1" column="1" colspan="4">
               <widget class="QComboBox" name="cb_y"/>
              </item>
-             <item row="4" column="5">
-              <spacer name="horizontalSpacer">
+             <item row="3" column="8">
+              <widget class="QScrollBar" name="horizontalScrollBar">
+               <property name="minimumSize">
+                <size>
+                 <width>150</width>
+                 <height>0</height>
+                </size>
+               </property>
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
-               <property name="sizeType">
-                <enum>QSizePolicy::Fixed</enum>
+              </widget>
+             </item>
+             <item row="4" column="8">
+              <widget class="QScrollBar" name="horizontalScrollBar_2">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
                </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>100</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
+              </widget>
              </item>
             </layout>
             <zorder>label_9</zorder>
@@ -362,7 +390,8 @@
             <zorder>le_trendlineslope</zorder>
             <zorder>label_12</zorder>
             <zorder>le_trendlineint</zorder>
-            <zorder>horizontalSpacer</zorder>
+            <zorder>horizontalScrollBar</zorder>
+            <zorder>horizontalScrollBar_2</zorder>
            </widget>
           </item>
          </layout>

@@ -146,7 +146,6 @@ class AppMainWindow(QMainWindow):
 
 
         self.scatter.plot(x, y, pen=None,symbolSize=3)
-        #self.scpoints = self.scatter.plot(x,y,pen=pg.mkPen(None), brush=pg.mkBrush(255, 255, 255, 120),size=10)
 
         self.scatter.setLabel('bottom',self.w.df().columns[self.cb_x.currentIndex()])
         self.scatter.setLabel('left',self.w.df().columns[self.cb_y.currentIndex()])
