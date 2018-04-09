@@ -1,5 +1,6 @@
 import sys
 import pyqtgraph as pg
+import numpy as np
 from pyqtgraph.Qt import QtCore, QtGui
 
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QFileDialog,QListWidgetItem,QMessageBox,QLabel)
@@ -25,6 +26,7 @@ class AppMainWindow(QMainWindow):
         self.btn_plottops.clicked.connect(self.plottops)
 
         self.btn_startcrossplot.clicked.connect(self.startcrossplot)
+        self.btn_trendline.clicked.connect(self.plottrendline)
 
 
         self.tops=[]
@@ -140,16 +142,32 @@ class AppMainWindow(QMainWindow):
         y = self.w.data[self.w.df().columns[self.cb_y.currentIndex()]]
         color = self.w.data[self.w.df().columns[self.cb_points.currentIndex()]]
 
-        print(min(color),max(color))
+        #print(min(color),max(color))
 
 
-        self.scpoints = self.scatter.plot(x, y, pen=None,symbolSize=3)
+        self.scatter.plot(x, y, pen=None,symbolSize=3)
         #self.scpoints = self.scatter.plot(x,y,pen=pg.mkPen(None), brush=pg.mkBrush(255, 255, 255, 120),size=10)
 
-        self.scatter.setLabel('left',self.w.df().columns[self.cb_x.currentIndex()])
-        self.scatter.setLabel('bottom',self.w.df().columns[self.cb_y.currentIndex()])
+        self.scatter.setLabel('bottom',self.w.df().columns[self.cb_x.currentIndex()])
+        self.scatter.setLabel('left',self.w.df().columns[self.cb_y.currentIndex()])
 
-        #self.plt_Crossplot = self.scatter.plot(x, y, pen=None, symbolPen=pg.mkPen(None), symbolBrush=[pg.mkBrush(c) for c in colors], symbolSize=3)
+
+
+    def plottrendline(self):
+        x = np.array(self.w.data[self.w.df().columns[self.cb_x.currentIndex()]])
+        y = np.array(self.w.data[self.w.df().columns[self.cb_y.currentIndex()]])
+
+        idx = np.isfinite(x) & np.isfinite(y)
+        fit = np.polyfit(x[idx], y[idx], 1)
+        slope,intercept = fit
+        self.le_trendlineslope.setText(str(slope))
+        self.le_trendlineint.setText(str(intercept))
+        xfit=[min(x[idx]),max(x[idx])]
+        yfit = [slope*xx + intercept for xx in xfit]
+        self.scatter.plot(xfit, yfit, pen='r')
+
+
+
 
 
 

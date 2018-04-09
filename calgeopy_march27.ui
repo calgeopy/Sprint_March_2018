@@ -228,7 +228,7 @@
           <item row="0" column="0">
            <widget class="PlotWidget" name="scatter"/>
           </item>
-          <item row="1" column="0">
+          <item row="2" column="0">
            <widget class="QGroupBox" name="groupBox_6">
             <property name="enabled">
              <bool>true</bool>
@@ -244,9 +244,6 @@
                </property>
               </widget>
              </item>
-             <item row="1" column="1">
-              <widget class="QComboBox" name="cb_y"/>
-             </item>
              <item row="0" column="0">
               <widget class="QLabel" name="label_9">
                <property name="text">
@@ -254,34 +251,87 @@
                </property>
               </widget>
              </item>
-             <item row="0" column="1">
-              <widget class="QComboBox" name="cb_x"/>
-             </item>
-             <item row="2" column="0">
+             <item row="3" column="0">
               <widget class="QLabel" name="label_11">
                <property name="text">
                 <string>Points</string>
                </property>
               </widget>
              </item>
-             <item row="2" column="1">
-              <widget class="QComboBox" name="cb_points"/>
-             </item>
-             <item row="3" column="1">
-              <widget class="QPushButton" name="btn_startcrossplot">
-               <property name="text">
-                <string>Launch CP</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="0">
+             <item row="4" column="0">
               <widget class="QLabel" name="label_8">
                <property name="text">
                 <string>Crossplot</string>
                </property>
               </widget>
              </item>
-             <item row="0" column="2">
+             <item row="4" column="8">
+              <widget class="QLineEdit" name="le_trendlineint">
+               <property name="maximumSize">
+                <size>
+                 <width>150</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <widget class="QPushButton" name="btn_startcrossplot">
+               <property name="text">
+                <string>Launch CP</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="8">
+              <widget class="QPushButton" name="btn_trendline">
+               <property name="text">
+                <string>Add Trendline</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1" colspan="4">
+              <widget class="QComboBox" name="cb_x"/>
+             </item>
+             <item row="3" column="1" colspan="4">
+              <widget class="QComboBox" name="cb_points"/>
+             </item>
+             <item row="3" column="6">
+              <widget class="QLabel" name="label_13">
+               <property name="text">
+                <string>Slope</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="8">
+              <widget class="QLineEdit" name="le_trendlineslope">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>150</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="6">
+              <widget class="QLabel" name="label_12">
+               <property name="text">
+                <string>Intercept</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1" colspan="4">
+              <widget class="QComboBox" name="cb_y"/>
+             </item>
+             <item row="4" column="5">
               <spacer name="horizontalSpacer">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
@@ -291,7 +341,7 @@
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
-                 <width>200</width>
+                 <width>100</width>
                  <height>20</height>
                 </size>
                </property>
@@ -307,6 +357,11 @@
             <zorder>cb_points</zorder>
             <zorder>btn_startcrossplot</zorder>
             <zorder>label_8</zorder>
+            <zorder>btn_trendline</zorder>
+            <zorder>label_13</zorder>
+            <zorder>le_trendlineslope</zorder>
+            <zorder>label_12</zorder>
+            <zorder>le_trendlineint</zorder>
             <zorder>horizontalSpacer</zorder>
            </widget>
           </item>
