@@ -137,15 +137,43 @@ class AppMainWindow(QMainWindow):
 
 
     def startcrossplot(self):
+        # import matplotlib
+        # from matplotlib import cm
+        #
+        # cmap = matplotlib.cm.get_cmap(terrain)
 
         x = self.w.data[self.w.df().columns[self.cb_x.currentIndex()]]
         y = self.w.data[self.w.df().columns[self.cb_y.currentIndex()]]
         color = self.w.data[self.w.df().columns[self.cb_points.currentIndex()]]
 
-        #print(min(color),max(color))
+        # print(min(color),max(color))
+        #
+        clrs= np.around(color/150*255).astype(int)
+        clrs = [x if x<255 else 255 for x in clrs]
+        print(clrs[:500])
+
+        c1=np.column_stack([clrs,clrs,clrs])
 
 
-        self.scatter.plot(x, y, pen=None,symbolSize=3)
+        print(c1[:500])
+        #
+        # colors = list(zip(clrs, clrs, clrs, a))
+        #
+        # print(min(clrs),max(clrs))
+
+        self.scatter.clear()
+
+        data1 = self.scatter.plot()
+
+        data1.setData(x,y,pen=None,symbol='o', symbolPen=None, symbolSize=5,symbolBrush=[pg.mkBrush(c) for c in c1],pxMode=True )
+
+
+        #scp = pg.ScatterPlotItem(x, y, pen=None,symbolSize=4,symbolBrush='r',pxMode=True)
+        #self.scpoints = self.scatter.plot(self.Lamdarho, self.murho, pen=None, symbolPen=pg.mkPen(None), symbolBrush=[pg.mkBrush(c) for c in colors], symbolSize=3)
+
+        #scp.setBrush([clrs,clrs,clrs],mask=None)
+        #scp.setBrush(QtGui.QBrush(QtGui.QColor(QtCore.qrand() % 256, QtCore.qrand() % 256, QtCore.qrand() % 256)))
+        #self.scatter.addItem(scp)
 
         self.scatter.setLabel('bottom',self.w.df().columns[self.cb_x.currentIndex()])
         self.scatter.setLabel('left',self.w.df().columns[self.cb_y.currentIndex()])
@@ -163,6 +191,8 @@ class AppMainWindow(QMainWindow):
         self.le_trendlineint.setText(str(intercept))
         xfit=[min(x[idx]),max(x[idx])]
         yfit = [slope*xx + intercept for xx in xfit]
+        #trendline=self.scatter.addLine(x=xfit, y=yfit, pen='r')
+        #self.scatter.addItem(trendline)
         self.scatter.plot(xfit, yfit, pen='r')
 
 
